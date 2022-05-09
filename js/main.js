@@ -55,27 +55,26 @@ class Game {
                         cellElement[i].removeEventListener('click', currentStep)
                     }
                     return (message.innerText = 'Win player ' + z)
-
-                    function changePlayer() {
-                        z === 'X' ? (z = 'O') : (z = 'X')
-                        stepCount++
-                        stepCount == 9
-                            ? (message.innerText = 'Tie')
-                            : (message.innerText = 'The player ' + z)
-                    }
                 }
+                function changePlayer() {
+                    z === 'X' ? (z = 'O') : (z = 'X')
+                    stepCount++
+                    stepCount == 9
+                        ? (document.getElementById('message').innerText = 'Tie')
+                        : (document.getElementById('message').innerText =
+                              'The player ' + z)
+                }
+                changePlayer()
             }
 
             function checkWin(arr, number) {
-                for (let w = 0, wLen = winCombinations.length; w < wLen; w++) {
+                let wLen = winCombinations
+                let kLen = someWinArr.length
+                for (let w = 0; w < wLen; w++) {
                     let someWinArr = winCombinations[w],
                         count = 0
                     if (someWinArr.indexOf(number) !== -1) {
-                        for (
-                            let k = 0, kLen = someWinArr.length;
-                            k < kLen;
-                            k++
-                        ) {
+                        for (let k = 0; k < kLen; k++) {
                             if (arr.indexOf(someWinArr[k]) !== -1) {
                                 count++
                                 if (count === 3) {
@@ -88,24 +87,21 @@ class Game {
                 }
             }
         }
+    }
 
-        reset()
-        {
-            reset.addEventListener('click', function () {
-                for (let i = 0; i < ceil.length; i++) {
-                    ceil[i].innerText = ''
-                }
-                dataO = []
-                dataX = []
-                this.currentPlayer = 'X'
-                stepCount = 0
-                message.innerText = 'The player ' + this.currentPlayer
-                for (let i = 0; i < ceil.length; i++) {
-                    ceil[i].classList.remove('x', 'o')
-                    // ceil[i].addEventListener("click", currentStep);
-                }
-            })
-        }
+    reset() {
+        reset.addEventListener('click', function () {
+            for (let i = 0; i < cellElement.length; i++) {
+                cellElement[i].innerText = ''
+            }
+            dataO = []
+            dataX = []
+            this.currentPlayer = 'X'
+            stepCount = 0
+            for (let i = 0; i < cellElement.length; i++) {
+                cellElement[i].classList.remove('x', 'o')
+            }
+        })
     }
 
     // let test = new Game()
