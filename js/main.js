@@ -1,7 +1,7 @@
 const cellElement = document.querySelectorAll('.cell')
-const restartGame = document.querySelectorAll('.restart')
+const restartGame = document.getElementById('restart')
 const winningMessage = document.querySelectorAll('.winningMessage')
-const stepCount = 0
+let stepCount = 0
 const winningCombinations = [
     [1, 2, 3],
     [1, 4, 7],
@@ -30,7 +30,7 @@ class Game {
         this.playerO = new Player('O')
         this.currentPlayer = this.playerX.name
 
-        // console.log(this.currentPlayer)
+        console.log(this.currentPlayer)
     }
 
     addX() {
@@ -89,9 +89,9 @@ class Game {
         }
     }
 
-    reset() {
-        reset.addEventListener('click', function () {
-            reset.forEach((cellElement) => {
+    restartGame() {
+        restartGame.addEventListener('click', function () {
+            restartGame.forEach((cellElement) => {
                 cellElement[i].innerText = ''
             })
             // for (let i = 0; i < cellElement.length; i++) {
@@ -112,4 +112,4 @@ class Game {
 
 const game = new Game()
 game.addX()
-game.reset()
+game.restartGame()
