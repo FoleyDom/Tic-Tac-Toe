@@ -69,12 +69,12 @@ class Game {
 
             function checkWin(arr, number) {
                 let wLen = winCombinations
-                let kLen = someWinArr.length
+                let sLen = someWinArr.length
                 for (let w = 0; w < wLen; w++) {
                     let someWinArr = winCombinations[w],
                         count = 0
                     if (someWinArr.indexOf(number) !== -1) {
-                        for (let k = 0; k < kLen; k++) {
+                        for (let s = 0; s < sLen; k++) {
                             if (arr.indexOf(someWinArr[k]) !== -1) {
                                 count++
                                 if (count === 3) {
@@ -91,9 +91,12 @@ class Game {
 
     reset() {
         reset.addEventListener('click', function () {
-            for (let i = 0; i < cellElement.length; i++) {
+            reset.forEach((cellElement) => {
                 cellElement[i].innerText = ''
-            }
+            })
+            // for (let i = 0; i < cellElement.length; i++) {
+            //     cellElement[i].innerText = ''
+            // }
             dataO = []
             dataX = []
             this.currentPlayer = 'X'
